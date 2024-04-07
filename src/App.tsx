@@ -20,9 +20,15 @@ export default function App() {
       <div className="flex flex-col mx-4 my-4 md:mx-0">
         <Header step={step} />
         {step === STEP.SELECT_SERVICE ? (
-          <SelectService setGlobalSelectedService={setSelectedService} />
+          <SelectService
+            setGlobalSelectedService={setSelectedService}
+            actualService={selectedService}
+          />
         ) : step === STEP.SELECT_HOUR ? (
-          <SelectHour setGlobalHour={setSelectedHour} />
+          <SelectHour
+            setGlobalHour={setSelectedHour}
+            actualHour={selectedHour}
+          />
         ) : (
           <Confirm service={selectedService?.name} date={selectedHour} />
         )}
