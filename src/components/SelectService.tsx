@@ -5,10 +5,10 @@ import { SelectServiceProps, Service, ServicesByCategory } from "../types";
 
 export default function SelectService({
   setGlobalSelectedService,
+  actualService,
 }: SelectServiceProps) {
   const services: Service[] = useFetchServices();
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const servicesByCategory: ServicesByCategory = services.reduce(
     (acc: ServicesByCategory, service) => {
@@ -26,7 +26,6 @@ export default function SelectService({
   };
 
   const handleSelect = (service: Service) => {
-    setSelectedService(service);
     setGlobalSelectedService(service);
   };
 
@@ -62,12 +61,12 @@ export default function SelectService({
                       <button
                         onClick={() => handleSelect(service)}
                         className={`rounded-sm w-[40%] p-1 ml-[60%] text-white ${
-                          selectedService?.id === service.id
+                          actualService?.id === service.id
                             ? "bg-[#4B5C6B]"
                             : "bg-[#788896]"
                         }`}
                       >
-                        {selectedService?.id === service.id
+                        {actualService?.id === service.id
                           ? "Seleccionado"
                           : "Seleccionar"}
                       </button>
