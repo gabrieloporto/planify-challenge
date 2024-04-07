@@ -1,14 +1,14 @@
-import { useState } from "react";
 import useFetchHours from "../hooks/useFetchHours";
 import { date, formatDate } from "../logic/logic";
 import { Hour, SelectedHour } from "../types";
 
-export default function SelectHour({ setGlobalHour }: SelectedHour) {
+export default function SelectHour({
+  setGlobalHour,
+  actualHour,
+}: SelectedHour) {
   const hours: Hour | undefined = useFetchHours();
-  const [selectedHour, setSelectedHour] = useState<string>();
 
   const handleHour = (hour: string) => {
-    setSelectedHour(hour);
     setGlobalHour(`${date(hours?.date)} ${hour}`);
   };
 
@@ -22,7 +22,7 @@ export default function SelectHour({ setGlobalHour }: SelectedHour) {
             onClick={() => handleHour(hour)}
             key={index}
             className={`rounded-sm p-2  font-[500] ${
-              selectedHour === hour
+              actualHour?.substring(actualHour.length - 5) === hour
                 ? "bg-[#4B5C6B] text-white"
                 : "bg-[#C3CFD9] text-[#4B5C6B]"
             }`}
