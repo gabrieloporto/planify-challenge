@@ -11,6 +11,7 @@ export interface ServicesByCategory {
 
 export interface SelectServiceProps {
   setGlobalSelectedService: (service: Service) => void;
+  actualService: Service | null;
 }
 
 export interface Hour {
@@ -35,6 +36,7 @@ export type Step = {
 
 export type SelectedHour = {
   setGlobalHour: (hour: string) => void;
+  actualHour: string | null;
 };
 
 export type HeaderStep = {
